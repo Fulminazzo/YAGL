@@ -8,10 +8,12 @@ import it.angrybear.yagl.contents.ItemGUIContent;
 import it.angrybear.yagl.items.Item;
 import it.angrybear.yagl.viewers.Viewer;
 import it.fulminazzo.fulmicollection.objects.FieldEquable;
+import it.fulminazzo.fulmicollection.objects.Refl;
 import it.fulminazzo.fulmicollection.structures.tuples.Tuple;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -779,7 +781,17 @@ public class PageableGUI extends FieldEquable implements Iterable<GUI>, Metadata
 
     @Override
     public @NotNull PageableGUI copyAll(@NotNull GUI other, boolean replace) {
-        return (PageableGUI) GUI.super.copyAll(other, replace);
+        GUI.super.copyAll(other, replace);
+        if (other instanceof PageableGUI) {
+            Refl<?> actual = new Refl<>(other);
+            Refl<?> curr = new Refl<>(this);
+            for (Field field : PageableGUI.class.getDeclaredFields()) {
+                Object obj = actual.getFieldObject(field);
+                if ((obj == null || (obj instanceof Tuple && ((Tuple<?, ?>) obj).isEmpty())) || replace)
+                    actual.setFieldObject(field, curr.getFieldObject(field));
+            }
+        }
+        return this;
     }
 
     @Override
