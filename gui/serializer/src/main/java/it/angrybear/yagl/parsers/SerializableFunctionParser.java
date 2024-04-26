@@ -4,7 +4,6 @@ import it.angrybear.yagl.SerializableFunction;
 import it.angrybear.yagl.utils.ParserUtils;
 import it.fulminazzo.fulmicollection.interfaces.functions.BiFunctionException;
 import it.fulminazzo.fulmicollection.interfaces.functions.TriConsumer;
-import it.fulminazzo.fulmicollection.utils.SerializeUtils;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.IConfiguration;
 import it.fulminazzo.yamlparser.parsers.YAMLParser;
@@ -40,12 +39,17 @@ public class SerializableFunctionParser<F extends SerializableFunction> extends 
             Class<?> clazz = typeToClass(getOClass(), type);
             // Get content
             String content = section.getString("content");
-            if (content == null) throw new IllegalArgumentException("'content' cannot be null");
             try {
+                if (content == null) throw new NoSuchMethodException();
                 Constructor<?> constructor = clazz.getConstructor(String.class);
                 return (F) constructor.newInstance(content);
             } catch (NoSuchMethodException e) {
-                return SerializeUtils.deserializeFromBase64(content);
+                try {
+                    Constructor<?> constructor = clazz.getConstructor();
+                    return (F) constructor.newInstance();
+                } catch (NoSuchMethodException ex) {
+                    throw new IllegalArgumentException("'content' cannot be null");
+                }
             }
         };
     }
@@ -56,7 +60,8 @@ public class SerializableFunctionParser<F extends SerializableFunction> extends 
             c.set(s, null);
             if (f == null) return;
             c.set(s + ".type", ParserUtils.classToType(getOClass(), (Class<? extends F>) f.getClass()));
-            c.set(s + ".content", f.serialize());
+            String serialized = f.serialize();
+            if (!serialized.isEmpty()) c.set(s + ".content", serialized);
         };
     }
 
