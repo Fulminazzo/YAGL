@@ -65,4 +65,9 @@ public abstract class Viewer {
      * @return true if they do
      */
     public abstract boolean hasPermission(final @NotNull String permission);
+
+    /**
+     * Closes the currently open GUI.
+     */
+    public abstract void closeGUI();
 }

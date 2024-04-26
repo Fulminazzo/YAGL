@@ -259,6 +259,11 @@ class PageableGUITest {
         public boolean hasPermission(@NotNull String permission) {
             return false;
         }
+
+        @Override
+        public void closeGUI() {
+
+        }
     }
 
     static class MockGUIAdapter {

@@ -49,6 +49,11 @@ class BukkitViewer extends Viewer {
         return getPlayer().filter(p -> p.hasPermission(permission)).isPresent();
     }
 
+    @Override
+    public void closeGUI() {
+        getPlayer().ifPresent(HumanEntity::closeInventory);
+    }
+
     /**
      * Gets player.
      *
