@@ -275,6 +275,14 @@ public class ItemGUIContent extends GUIContentImpl implements GUIContent, Item {
         return (ItemGUIContent) super.setVariable(name, value);
     }
 
+    @Override
+    public @NotNull String toString() {
+        String output = super.toString();
+        String item = this.item.toString();
+        item = item.substring(1, item.length() - 1);
+        return output.replace(String.format("\"item\": {%s}", item), item);
+    }
+
     /**
      * Creates an instance of {@link ItemGUIContent}.
      *

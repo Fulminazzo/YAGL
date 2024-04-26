@@ -3,6 +3,7 @@ package it.angrybear.yagl.contents;
 import it.angrybear.yagl.actions.GUIItemAction;
 import it.angrybear.yagl.contents.requirements.RequirementChecker;
 import it.angrybear.yagl.items.Item;
+import it.angrybear.yagl.utils.ObjectUtils;
 import it.angrybear.yagl.viewers.Viewer;
 import it.angrybear.yagl.wrappers.Sound;
 import it.fulminazzo.fulmicollection.objects.FieldEquable;
@@ -77,5 +78,10 @@ abstract class GUIContentImpl extends FieldEquable implements GUIContent {
             if (this.clickSound != null) v.playSound(this.clickSound);
             if (this.clickAction != null) this.clickAction.execute(v, g, c);
         });
+    }
+
+    @Override
+    public @NotNull String toString() {
+        return ObjectUtils.printAsJSON(this);
     }
 }
