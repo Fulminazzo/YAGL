@@ -733,6 +733,21 @@ public class PageableGUI extends FieldEquable implements Iterable<GUI>, Metadata
     }
 
     @Override
+    public @NotNull PageableGUI fill(@NotNull Item content) {
+        return (PageableGUI) GUI.super.fill(content);
+    }
+
+    @Override
+    public @NotNull PageableGUI fill(@NotNull ItemGUIContent content) {
+        return (PageableGUI) GUI.super.fill(content);
+    }
+
+    @Override
+    public @NotNull PageableGUI fill(@NotNull GUIContent content) {
+        return (PageableGUI) GUI.super.fill(content);
+    }
+
+    @Override
     public @NotNull PageableGUI onClickOutside(@NotNull String command) {
         return (PageableGUI) GUI.super.onClickOutside(command);
     }

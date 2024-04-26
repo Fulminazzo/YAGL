@@ -493,6 +493,21 @@ public class ResizableGUI extends DefaultGUI {
     }
 
     @Override
+    public @NotNull ResizableGUI fill(@NotNull Item content) {
+        return (ResizableGUI) super.fill(content);
+    }
+
+    @Override
+    public @NotNull ResizableGUI fill(@NotNull ItemGUIContent content) {
+        return (ResizableGUI) super.fill(content);
+    }
+
+    @Override
+    public @NotNull ResizableGUI fill(@NotNull GUIContent content) {
+        return (ResizableGUI) super.fill(content);
+    }
+
+    @Override
     public @NotNull ResizableGUI onClickOutside(@NotNull String command) {
         return (ResizableGUI) super.onClickOutside(command);
     }

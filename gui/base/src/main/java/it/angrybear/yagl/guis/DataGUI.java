@@ -8,6 +8,7 @@ import it.angrybear.yagl.contents.ItemGUIContent;
 import it.angrybear.yagl.exceptions.NotImplemented;
 import it.angrybear.yagl.items.Item;
 import it.angrybear.yagl.viewers.Viewer;
+import lombok.Data;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -722,6 +723,21 @@ public class DataGUI<T> extends PageableGUI {
     @Override
     public @NotNull DataGUI<T> unsetSouthEast() {
         return (DataGUI<T>) super.unsetSouthEast();
+    }
+
+    @Override
+    public @NotNull DataGUI<T> fill(@NotNull Item content) {
+        return (DataGUI<T>) super.fill(content);
+    }
+
+    @Override
+    public @NotNull DataGUI<T> fill(@NotNull ItemGUIContent content) {
+        return (DataGUI<T>) super.fill(content);
+    }
+
+    @Override
+    public @NotNull DataGUI<T> fill(@NotNull GUIContent content) {
+        return (DataGUI<T>) super.fill(content);
     }
 
     @Override
