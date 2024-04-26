@@ -8,7 +8,6 @@ import it.angrybear.yagl.contents.ItemGUIContent;
 import it.angrybear.yagl.exceptions.NotImplemented;
 import it.angrybear.yagl.items.Item;
 import it.angrybear.yagl.viewers.Viewer;
-import lombok.Data;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
