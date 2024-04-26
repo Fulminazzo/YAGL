@@ -216,7 +216,7 @@ public class ItemGUIContent extends GUIContentImpl implements GUIContent, Item {
     }
 
     public @NotNull ItemGUIContent copy() {
-        return ItemGUIContent.newInstance(this.item.copy());
+        return ItemGUIContent.newInstance(this.item.copy()).copyFrom(this, true);
     }
 
     @Override
