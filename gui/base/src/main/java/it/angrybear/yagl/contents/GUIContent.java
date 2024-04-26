@@ -1,15 +1,16 @@
 package it.angrybear.yagl.contents;
 
 import it.angrybear.yagl.Metadatable;
+import it.angrybear.yagl.actions.GUIItemAction;
+import it.angrybear.yagl.actions.GUIItemClose;
 import it.angrybear.yagl.actions.GUIItemCommand;
 import it.angrybear.yagl.contents.requirements.PermissionRequirement;
 import it.angrybear.yagl.contents.requirements.RequirementChecker;
 import it.angrybear.yagl.items.Item;
+import it.angrybear.yagl.viewers.Viewer;
 import it.angrybear.yagl.wrappers.Sound;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import it.angrybear.yagl.actions.GUIItemAction;
-import it.angrybear.yagl.viewers.Viewer;
 
 import java.util.Optional;
 
@@ -84,6 +85,15 @@ public interface GUIContent extends Metadatable {
      * @return the boolean
      */
     boolean hasViewRequirements(final @NotNull Viewer viewer);
+
+    /**
+     * Closes the opened GUI for the {@link Viewer}.
+     *
+     * @return this content
+     */
+    default @NotNull GUIContent onClickItemClose() {
+        return onClickItem(new GUIItemClose());
+    }
 
     /**
      * Forces the {@link Viewer} to execute the given command when clicking on this GUIContent in a GUI.

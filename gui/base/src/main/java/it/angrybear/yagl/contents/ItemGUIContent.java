@@ -236,6 +236,11 @@ public class ItemGUIContent extends GUIContentImpl implements GUIContent, Item {
     }
 
     @Override
+    public @NotNull ItemGUIContent onClickItemClose() {
+        return (ItemGUIContent) super.onClickItemClose();
+    }
+
+    @Override
     public @NotNull ItemGUIContent onClickItem(@NotNull GUIItemAction action) {
         return (ItemGUIContent) super.onClickItem(action);
     }
