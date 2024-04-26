@@ -1176,6 +1176,39 @@ public interface GUI extends Metadatable {
     }
 
     /**
+     * Sets the given content for the whole GUI.
+     *
+     * @param content the content
+     * @return this gui
+     */
+    default @NotNull GUI fill(final @NotNull Item content) {
+        for (int i = 0; i < size(); i++) setContents(i, content);
+        return this;
+    }
+
+    /**
+     * Sets the given content for the whole GUI.
+     *
+     * @param content the content
+     * @return this gui
+     */
+    default @NotNull GUI fill(final @NotNull ItemGUIContent content) {
+        for (int i = 0; i < size(); i++) setContents(i, content);
+        return this;
+    }
+
+    /**
+     * Sets the given content for the whole GUI.
+     *
+     * @param content the content
+     * @return this gui
+     */
+    default @NotNull GUI fill(final @NotNull GUIContent content) {
+        for (int i = 0; i < size(); i++) setContents(i, content);
+        return this;
+    }
+
+    /**
      * Removes all the contents in this GUI.
      *
      * @return this gui
