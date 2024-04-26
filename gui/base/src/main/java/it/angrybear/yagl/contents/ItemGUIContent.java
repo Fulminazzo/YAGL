@@ -6,6 +6,7 @@ import it.angrybear.yagl.contents.requirements.RequirementChecker;
 import it.angrybear.yagl.items.Item;
 import it.angrybear.yagl.items.fields.ItemField;
 import it.angrybear.yagl.items.fields.ItemFlag;
+import it.angrybear.yagl.utils.ObjectUtils;
 import it.angrybear.yagl.wrappers.Enchantment;
 import it.angrybear.yagl.wrappers.Sound;
 import org.jetbrains.annotations.NotNull;
@@ -216,7 +217,7 @@ public class ItemGUIContent extends GUIContentImpl implements GUIContent, Item {
     }
 
     public @NotNull ItemGUIContent copy() {
-        return ItemGUIContent.newInstance(this.item.copy()).copyFrom(this, true);
+        return ObjectUtils.copy(this);
     }
 
     @Override
