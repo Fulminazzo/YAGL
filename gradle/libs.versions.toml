@@ -2,7 +2,7 @@
 delombok = "8.4"
 groovy = "4.0.16"
 
-fulmicollection = "1.6"
+fulmicollection = "1.6.1"
 yamlparser = "1.6.3"
 
 spigot = "1.14-R0.1-SNAPSHOT"
