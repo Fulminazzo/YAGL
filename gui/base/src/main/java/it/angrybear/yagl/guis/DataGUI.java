@@ -156,10 +156,12 @@ public class DataGUI<T> extends PageableGUI {
     private @NotNull GUI fillContents(final @NotNull GUI gui, final int page) {
         int emptySlots = emptySlots().size();
         int min = emptySlots * page;
-        if (min >= this.data.size())
+        int dataSize = this.data.size();
+        if (dataSize == 0) return gui;
+        if (min >= dataSize)
             throw new IllegalArgumentException(String.format("No such page '%s'", page));
         if (page > 0) min++;
-        int size = Math.min(gui.emptySlots().size() + min, this.data.size());
+        int size = Math.min(gui.emptySlots().size() + min, dataSize);
         for (int i = min; i < size; i++) {
             T data = this.data.get(i);
             GUIContent content = this.dataConverter.apply(data);
@@ -210,7 +212,7 @@ public class DataGUI<T> extends PageableGUI {
     @Override
     public int pages() {
         int dataSize = this.data.size();
-        if (dataSize == 0) throw new IllegalArgumentException("Cannot set empty data");
+        if (dataSize == 0) return 1;
         final int emptySlots = getPageEmptySlots();
         final int firstPageSlots = getFirstPageEmptySlots();
         final int lastPageSlots = getLastPageEmptySlots();

@@ -109,7 +109,7 @@ class DataGUITest {
     void testNoData() {
         DataGUI<?> gui = DataGUI.newGUI(9, s -> null);
         int page = 3;
-        assertThrowsExactly(IllegalArgumentException.class, () -> gui.open(null, page));
+        assertDoesNotThrow(() -> gui.open(null, page));
     }
 
     @Test
