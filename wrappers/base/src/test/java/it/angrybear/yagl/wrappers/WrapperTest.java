@@ -55,7 +55,6 @@ class WrapperTest {
 
             final String message = e.getMessage();
             assertNotNull(message, "Error message should have not been null");
-            System.out.println(message);
 
             if (min != null) {
                 assertTrue(message.contains(String.valueOf(min)), "Error message should contain min value");
