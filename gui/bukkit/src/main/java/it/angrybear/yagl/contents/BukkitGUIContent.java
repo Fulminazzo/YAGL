@@ -7,6 +7,7 @@ import it.angrybear.yagl.exceptions.NotImplemented;
 import it.angrybear.yagl.items.BukkitItem;
 import it.angrybear.yagl.items.Item;
 import it.angrybear.yagl.items.fields.ItemFlag;
+import it.angrybear.yagl.utils.ObjectUtils;
 import it.angrybear.yagl.wrappers.Enchantment;
 import it.angrybear.yagl.wrappers.Sound;
 import org.bukkit.Material;
@@ -55,6 +56,11 @@ public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
         if (itemMetaClass == null) itemMetaClass = (Class<M>) ItemMeta.class;
         if (metaFunction == null) metaFunction = (Consumer<M>) this.metaFunction;
         return BukkitItem.super.create(itemMetaClass, metaFunction);
+    }
+
+    @Override
+    public @NotNull BukkitGUIContent copy() {
+        return ObjectUtils.copy(this);
     }
 
     @Override
@@ -230,11 +236,6 @@ public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
     @Override
     public BukkitGUIContent setMaterial(@NotNull Material material) {
         return (BukkitGUIContent) BukkitItem.super.setMaterial(material);
-    }
-
-    @Override
-    public @NotNull BukkitGUIContent copy() {
-        return (BukkitGUIContent) super.copy();
     }
 
     public static BukkitGUIContent newInstance(final @NotNull String material,
