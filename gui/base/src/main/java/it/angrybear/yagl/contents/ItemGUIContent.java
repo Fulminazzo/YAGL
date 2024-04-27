@@ -23,7 +23,7 @@ import java.util.Set;
 public class ItemGUIContent extends GUIContentImpl implements GUIContent, Item {
     private final Item item;
 
-    private ItemGUIContent() {
+    ItemGUIContent() {
         this(Item.newItem());
     }
 
