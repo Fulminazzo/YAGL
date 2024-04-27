@@ -12,10 +12,12 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unchecked")
 public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
     private final Consumer<ItemMeta> metaFunction;
 
@@ -30,8 +32,21 @@ public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
     }
 
     @Override
-    public @NotNull ItemStack create() {
-        return BukkitItem.super.create(ItemMeta.class, this.metaFunction);
+    public @NotNull Item internalRender() {
+        return this;
+    }
+
+    @Override
+    public <I extends Item> I copy(@NotNull Class<I> clazz) {
+        if (BukkitItem.class.isAssignableFrom(clazz)) return (I) this;
+        return super.copy(clazz);
+    }
+
+    @Override
+    public @NotNull <M extends ItemMeta> ItemStack create(@Nullable Class<M> itemMetaClass, @Nullable Consumer<M> metaFunction) {
+        if (itemMetaClass == null) itemMetaClass = (Class<M>) ItemMeta.class;
+        if (metaFunction == null) metaFunction = (Consumer<M>) this.metaFunction;
+        return BukkitItem.super.create(itemMetaClass, metaFunction);
     }
 
     @Override
