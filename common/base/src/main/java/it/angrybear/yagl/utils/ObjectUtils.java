@@ -12,6 +12,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ObjectUtils {
     private static final String EMPTY_IDENTIFIER = "";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm:ss MM-dd-yyyy");
 
     /**
      * Prints the given object in a JSON format.
@@ -48,7 +50,9 @@ public final class ObjectUtils {
             String output = collection.stream().map(ObjectUtils::printAsJSON).collect(Collectors.joining(", "));
             if (output.matches("(, )*")) return EMPTY_IDENTIFIER;
             else return String.format("[%s]", output);
-        } else if (!(object instanceof Map)) {
+        } else if (object instanceof UUID) return object.toString();
+        else if (object instanceof Date) return DATE_FORMAT.format((Date) object);
+        else if (!(object instanceof Map)) {
             Map<Object, Object> map = new LinkedHashMap<>();
             Refl<?> refl = new Refl<>(object);
             for (final Field field : refl.getNonStaticFields()) {
