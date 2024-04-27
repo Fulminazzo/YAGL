@@ -213,4 +213,14 @@ public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
     public @NotNull BukkitGUIContent copy() {
         return (BukkitGUIContent) super.copy();
     }
+
+    public static BukkitGUIContent newInstance(final @NotNull String material,
+                                               final @NotNull Consumer<ItemMeta> metaFunction) {
+        return new BukkitGUIContent(material, metaFunction);
+    }
+
+    public static BukkitGUIContent newInstance(final @NotNull Item item,
+                                               final @NotNull Consumer<ItemMeta> metaFunction) {
+        return new BukkitGUIContent(item, metaFunction);
+    }
 }
