@@ -3,6 +3,7 @@ package it.angrybear.yagl.contents;
 import it.angrybear.yagl.Metadatable;
 import it.angrybear.yagl.actions.GUIItemAction;
 import it.angrybear.yagl.contents.requirements.RequirementChecker;
+import it.angrybear.yagl.exceptions.NotImplemented;
 import it.angrybear.yagl.items.BukkitItem;
 import it.angrybear.yagl.items.Item;
 import it.angrybear.yagl.items.fields.ItemFlag;
@@ -20,6 +21,13 @@ import java.util.function.Consumer;
 @SuppressWarnings("unchecked")
 public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
     private final Consumer<ItemMeta> metaFunction;
+
+    BukkitGUIContent() {
+        super();
+        this.metaFunction = m -> {
+            throw new NotImplemented();
+        };
+    }
 
     BukkitGUIContent(@NotNull String material, Consumer<ItemMeta> metaFunction) {
         super(material);
