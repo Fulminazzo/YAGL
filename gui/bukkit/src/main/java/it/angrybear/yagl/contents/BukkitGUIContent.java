@@ -238,6 +238,11 @@ public class BukkitGUIContent extends ItemGUIContent implements BukkitItem {
         return (BukkitGUIContent) BukkitItem.super.setMaterial(material);
     }
 
+    @Override
+    public @NotNull String toString() {
+        return copy(ItemGUIContent.class).toString();
+    }
+
     public static BukkitGUIContent newInstance(final @NotNull String material,
                                                final @NotNull Consumer<ItemMeta> metaFunction) {
         return new BukkitGUIContent(material, metaFunction);
