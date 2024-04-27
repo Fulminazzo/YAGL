@@ -27,11 +27,11 @@ public class ItemGUIContent extends GUIContentImpl implements GUIContent, Item {
         this(Item.newItem());
     }
 
-    private ItemGUIContent(final @NotNull String material) {
+    ItemGUIContent(final @NotNull String material) {
         this(Item.newItem(material));
     }
 
-    private ItemGUIContent(final @NotNull Item item) {
+    ItemGUIContent(final @NotNull Item item) {
         this.item = item.copy(Item.class);
     }
 
