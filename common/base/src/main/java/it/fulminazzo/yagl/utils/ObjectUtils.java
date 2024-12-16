@@ -121,7 +121,7 @@ public final class ObjectUtils {
 
         final Refl<O> object = new Refl<>(clazz, new Object[0]);
         for (final Field field : object.getNonStaticFields())
-            try {
+            if (field.getDeclaringClass().isAssignableFrom(t.getClass()))
                 ReflectionUtils.get(field, t).map(obj1 -> {
                     if (obj1 == null) return null;
                     else if (obj1 instanceof Collection) return copyCollection(obj1);
@@ -129,9 +129,6 @@ public final class ObjectUtils {
                     else if (obj1.getClass().isArray()) return copyArray(obj1);
                     else return copyWithMethod(obj1);
                 }).ifPresent(obj1 -> object.setFieldObject(field, obj1));
-            } catch (IllegalArgumentException e) {
-                if (!e.getMessage().contains("Can not set")) throw e;
-            }
         return object.getObject();
     }
 
