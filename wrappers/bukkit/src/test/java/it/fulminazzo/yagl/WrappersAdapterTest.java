@@ -311,7 +311,7 @@ class WrappersAdapterTest extends BukkitUtils {
         for (Field field : org.bukkit.enchantments.Enchantment.class.getDeclaredFields())
             if (field.getType().equals(org.bukkit.enchantments.Enchantment.class)) {
                 org.bukkit.enchantments.Enchantment enchant = ReflectionUtils.getOrThrow(field, org.bukkit.enchantments.Enchantment.class);
-                enchantments.add(new MockEnchantment(enchant.getKey()));
+                enchantments.add(mockEnchantment(enchant.getKey()));
             }
         // Register enchantments
         Map<NamespacedKey, org.bukkit.enchantments.Enchantment> byKey = new Refl<>(org.bukkit.enchantments.Enchantment.class)
