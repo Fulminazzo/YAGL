@@ -358,7 +358,7 @@ class WrappersAdapterTest extends BukkitUtils {
         Refl<?> refl = new Refl<>(WrappersAdapter.class);
         assertThrowsExactly(IllegalArgumentException.class, () -> refl.invokeMethod("wParticleToGeneral",
                 ParticleType.DUST_COLOR_TRANSITION.create(Color.RED, Color.RED, 3f),
-                org.bukkit.Particle.class, (Function<?, Class<?>>) s -> org.bukkit.Particle.REDSTONE.getDataType()));
+                org.bukkit.Particle.class, (Function<?, Class<?>>) s -> org.bukkit.Particle.FALLING_DUST.getDataType()));
     }
 
     @Test
