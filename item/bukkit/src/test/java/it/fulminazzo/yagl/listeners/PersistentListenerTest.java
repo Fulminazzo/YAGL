@@ -27,6 +27,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -374,7 +376,7 @@ class PersistentListenerTest {
             contents[5] = none.create();
             List<ItemStack> drops = new LinkedList<>(Arrays.asList(contents));
 
-            PlayerDeathEvent event = new PlayerDeathEvent(player, drops, 3, "Player died");
+            PlayerDeathEvent event = createPlayerDeathEvent(player, drops, 3, "Player died");
             listener.on(event);
             // Simulate removal of contents
             Arrays.fill(contents, null);
@@ -397,7 +399,7 @@ class PersistentListenerTest {
             Player player = getPlayer();
             ItemStack[] contents = player.getInventory().getContents();
             contents[3] = maintain.create();
-            PlayerDeathEvent event = new PlayerDeathEvent(player, null, 3, "Player died");
+            PlayerDeathEvent event = createPlayerDeathEvent(player, null, 3, "Player died");
             listener.on(event);
             // Simulate removal of contents
             Arrays.fill(contents, null);
@@ -412,7 +414,7 @@ class PersistentListenerTest {
         void simulateNothingToRestore() throws InterruptedException {
             Player player = getPlayer();
             ItemStack[] contents = player.getInventory().getContents();
-            PlayerDeathEvent event = new PlayerDeathEvent(player, Arrays.asList(contents), 3, "Player died");
+            PlayerDeathEvent event = createPlayerDeathEvent(player, Arrays.asList(contents), 3, "Player died");
             listener.on(event);
             // Simulate removal of contents
             Arrays.fill(contents, null);
@@ -421,6 +423,11 @@ class PersistentListenerTest {
 
             for (ItemStack i : contents)
                 assertNull(i, "Nothing should be restored");
+        }
+
+        private static PlayerDeathEvent createPlayerDeathEvent(final @NotNull Player player, final @Nullable List<ItemStack> list,
+                                                               final int droppedExp, @Nullable final String deathMessage) {
+            return new Refl<>(PlayerDeathEvent.class, player, list, droppedExp, deathMessage).getObject();
         }
 
     }
