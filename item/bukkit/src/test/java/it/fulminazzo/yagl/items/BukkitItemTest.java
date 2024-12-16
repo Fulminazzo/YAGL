@@ -57,12 +57,12 @@ class BukkitItemTest {
         ItemMeta meta = expected.getItemMeta();
         meta.setDisplayName("Hello world");
         meta.setLore(Collections.singletonList("An interesting lore..."));
-        meta.addEnchant(Enchantment.ARROW_FIRE, 3, true);
+        meta.addEnchant(Enchantment.FIRE_ASPECT, 3, true);
         expected.setItemMeta(meta);
 
         BukkitItem actual = BukkitItem.newItem(Material.STONE).setAmount(3)
                 .setDisplayName("Hello world").addLore("An interesting lore...")
-                .addEnchantment("flame", 3);
+                .addEnchantment("fire_aspect", 3);
 
         assertTrue(actual.isSimilar(expected));
     }
@@ -71,11 +71,11 @@ class BukkitItemTest {
     void testMetaCreation() {
         ItemStack expected = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta meta = expected.getItemMeta();
-        ((EnchantmentStorageMeta) meta).addStoredEnchant(Enchantment.ARROW_FIRE, 1, true);
+        ((EnchantmentStorageMeta) meta).addStoredEnchant(Enchantment.FIRE_ASPECT, 1, true);
         expected.setItemMeta(meta);
 
         ItemStack actual = BukkitItem.newItem(Material.ENCHANTED_BOOK)
-                .create(EnchantmentStorageMeta.class, m -> m.addStoredEnchant(Enchantment.ARROW_FIRE, 1, true));
+                .create(EnchantmentStorageMeta.class, m -> m.addStoredEnchant(Enchantment.FIRE_ASPECT, 1, true));
 
         assertEquals(expected, actual);
     }

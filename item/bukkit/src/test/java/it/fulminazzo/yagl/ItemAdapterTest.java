@@ -197,10 +197,10 @@ class ItemAdapterTest extends BukkitUtils {
             check();
             org.bukkit.inventory.ShapelessRecipe expected = new org.bukkit.inventory.ShapelessRecipe(new org.bukkit.NamespacedKey("yagl", "test"),
                     new ItemStack(Material.STONE));
-            expected.addIngredient(new org.bukkit.inventory.RecipeChoice.ExactChoice(new ItemStack(Material.GRASS)));
+            expected.addIngredient(new org.bukkit.inventory.RecipeChoice.ExactChoice(new ItemStack(Material.DIAMOND)));
 
             ShapelessRecipe recipe = new ShapelessRecipe("test")
-                    .setOutput(Item.newItem("STONE")).addIngredient(Item.newItem("GRASS"));
+                    .setOutput(Item.newItem("STONE")).addIngredient(Item.newItem("DIAMOND"));
 
             Refl<?> r1 = new Refl<>(expected);
             Refl<?> r2 = new Refl<>(ItemAdapter.recipeToMinecraft(recipe));
