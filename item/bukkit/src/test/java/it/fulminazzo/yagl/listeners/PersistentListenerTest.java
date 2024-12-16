@@ -427,7 +427,11 @@ class PersistentListenerTest {
 
         private static PlayerDeathEvent createPlayerDeathEvent(final @NotNull Player player, final @Nullable List<ItemStack> list,
                                                                final int droppedExp, @Nullable final String deathMessage) {
-            return new Refl<>(PlayerDeathEvent.class, player, list, droppedExp, deathMessage).getObject();
+            try {
+                return new Refl<>(PlayerDeathEvent.class, player, list, droppedExp, deathMessage).getObject();
+            } catch (IllegalArgumentException ignored) {
+                return new Refl<>(PlayerDeathEvent.class, player, null, list, droppedExp, deathMessage).getObject();
+            }
         }
 
     }
