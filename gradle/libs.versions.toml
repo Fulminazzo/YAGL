@@ -16,6 +16,7 @@ annotations = "24.1.0"
 junit = "5.9.1"
 mockito = "4.11.0"
 jbukkit = "2.1"
+bytebuddy = "1.15.11"
 
 [libraries]
 groovy = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
@@ -34,3 +35,4 @@ junit-platform = { module = "org.junit:junit-bom", version.ref = "junit" }
 mockito = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
 jbukkit = { module = "it.fulminazzo:JBukkit", version.ref = "jbukkit" }
 jbukkit_legacy = { module = "it.fulminazzo.JBukkit:legacy", version.ref = "jbukkit" }
+bytebuddy = { module = "net.bytebuddy:byte-buddy-agent", version.ref = "bytebuddy" }
