@@ -329,7 +329,10 @@ class WrappersAdapterTest extends BukkitUtils {
 
     @Test
     void testEnchantmentConversionByName() {
-        org.bukkit.enchantments.Enchantment expected = new MockEnchantment(org.bukkit.enchantments.Enchantment.ARROW_FIRE.getKey());
+        org.bukkit.enchantments.Enchantment actualEnchantment = org.bukkit.enchantments.Enchantment.FIRE_ASPECT;
+        org.bukkit.enchantments.Enchantment expected = mock(org.bukkit.enchantments.Enchantment.class);
+        when(expected.getKey()).thenReturn(actualEnchantment.getKey());
+        when(expected.getName()).thenReturn(actualEnchantment.getKey().getKey());
         // Register enchantments
         Map<String, org.bukkit.enchantments.Enchantment> byName = new Refl<>(org.bukkit.enchantments.Enchantment.class)
                 .getFieldObject("byName");
