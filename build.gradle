@@ -207,7 +207,6 @@ allprojects {
 
 dependencies {
     subprojects.findAll { it.name != TEST_MODULE && it.name != DEMO_MODULE } .each { api project(it.path) }
-    implementation project(":${DEMO_MODULE}")
 }
 
 tasks.register("aggregateJavaDoc") {
