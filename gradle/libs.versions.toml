@@ -13,7 +13,7 @@ spigot_latest = "1.20-R0.1-SNAPSHOT"
 lombok = "1.18.30"
 annotations = "24.1.0"
 
-junit = "5.9.1"
+junit = "5.11.3"
 mockito = "4.11.0"
 jbukkit = "2.1"
 bytebuddy = "1.15.11"
