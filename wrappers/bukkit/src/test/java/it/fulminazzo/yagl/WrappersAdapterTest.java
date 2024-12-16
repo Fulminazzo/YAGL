@@ -288,7 +288,10 @@ class WrappersAdapterTest extends BukkitUtils {
         for (Field field : PotionEffectType.class.getDeclaredFields())
             if (field.getType().equals(PotionEffectType.class)) {
                 PotionEffectType type = ReflectionUtils.getOrThrow(field, PotionEffectType.class);
-                potionEffects.add(new MockPotionEffect(type.getId(), field.getName()));
+                PotionEffectType effect = mock(PotionEffectType.class);
+                when(effect.getId()).thenReturn(type.getId());
+                when(effect.getName()).thenReturn(field.getName());
+                potionEffects.add(effect);
             }
         // Register potion effects
         Map<String, PotionEffectType> byName = new Refl<>(PotionEffectType.class)
