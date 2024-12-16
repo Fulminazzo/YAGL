@@ -57,23 +57,6 @@ class GUIAdapterTest {
         when(this.player.getServer()).thenReturn(server);
     }
 
-    private static GUI[] guis() {
-        return new GUI[]{
-                GUI.newGUI(9)
-                        .setTitle("Hello world")
-                        .addContent(Item.newItem("stone").setDisplayName("test")),
-                GUI.newGUI(9)
-                        .setTitle(null)
-                        .addContent(Item.newItem("stone").setDisplayName("test")),
-                GUI.newGUI(GUIType.CHEST)
-                        .setTitle("Hello world")
-                        .addContent(Item.newItem("stone").setDisplayName("test")),
-                GUI.newGUI(GUIType.CHEST)
-                        .setTitle(null)
-                        .addContent(Item.newItem("stone").setDisplayName("test")),
-        };
-    }
-
     @Test
     void testOpenInAsync() {
         Server server = Bukkit.getServer();
@@ -93,6 +76,23 @@ class GUIAdapterTest {
         }
 
         verify(server.getScheduler()).runTask(eq(plugin), any(Runnable.class));
+    }
+
+    private static GUI[] guis() {
+        return new GUI[]{
+                GUI.newGUI(9)
+                        .setTitle("Hello world")
+                        .addContent(Item.newItem("stone").setDisplayName("test")),
+                GUI.newGUI(9)
+                        .setTitle(null)
+                        .addContent(Item.newItem("stone").setDisplayName("test")),
+                GUI.newGUI(GUIType.CHEST)
+                        .setTitle("Hello world")
+                        .addContent(Item.newItem("stone").setDisplayName("test")),
+                GUI.newGUI(GUIType.CHEST)
+                        .setTitle(null)
+                        .addContent(Item.newItem("stone").setDisplayName("test")),
+        };
     }
 
     @ParameterizedTest
