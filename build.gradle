@@ -144,6 +144,9 @@ allprojects {
     if (project.name == TEST_MODULE) return
 
     test {
+        // Necessary for Java 21 Byte Buddy
+        jvmArgs("-Dnet.bytebuddy.experimental=true")
+
         def projectName = project.name
 
         if (System.getenv(VERSION_VARIABLE) == null) {
